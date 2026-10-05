@@ -54,7 +54,7 @@ def main():
 # This function will load the users.csv file into the users table, discarding any records with incomplete data
 def load_and_clean_users(file_path):
     expected_columns = 3
-    with open (file_path, mode="r", encoding='utf-8'):
+    with open (file_path, mode="r", encoding='utf-8') as f:
         reader = csv.reader(f)
         next(reader, None)
 
