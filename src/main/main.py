@@ -41,7 +41,7 @@ def main():
     write_ordered_calls(os.path.join(_RESOURCES_DIR, 'orderedCalls.csv'))
 
     # Helper method that prints the contents of the users and callLogs tables. Uncomment to see data.
-    # select_from_users_and_call_logs()
+    select_from_users_and_call_logs()
 
     # Close the cursor and connection. main function ends here.
     cursor.close()
@@ -53,7 +53,7 @@ def main():
 
 # This function will load the users.csv file into the users table, discarding any records with incomplete data
 def load_and_clean_users(file_path):
-    expected_columns = 3
+    expected_columns = 2
     with open (file_path, mode="r", encoding='utf-8') as f:
         reader = csv.reader(f)
         next(reader, None)
@@ -64,15 +64,16 @@ def load_and_clean_users(file_path):
         ]
 
         cursor.executemany(
-            "INSERT INTO users (userID, firstName, lastName) VALUE (?,?,?)",
+            "INSERT INTO users (firstName, lastName) VALUES (?,?)",
             clean_rows
         )
+
     
 
 
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
-    expected_columns = 7
+    expected_columns = 6
     print("TODO: load_call_logs")
 
 
