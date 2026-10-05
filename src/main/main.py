@@ -125,7 +125,7 @@ def write_ordered_calls(csv_file_path):
             direction,
             userId
         FROM callLogs 
-        ORDER BY userId
+        ORDER BY userId, startTime
     """
     cursor.execute(query)
 
