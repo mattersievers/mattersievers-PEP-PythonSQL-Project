@@ -101,10 +101,12 @@ def write_user_analytics(csv_file_path):
         FROM callLogs
         GROUP BY userId
     """
+    cursor.execute(query)
+
     with open(csv_file_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
 
-        headers = [description[0] for description in cursor.description]
+        headers = ["userId", "avgDuration", "numCalls"]
         writer.writerow(headers)
 
         data = cursor.fetchall()
